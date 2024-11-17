@@ -35,15 +35,14 @@ void initVec(VEC<T> &v, ELEM<T> &&cons) {
 
 //printVec
 template <class T>
-void printVec( VEC<T> &v) {
-	std::cout << "[ ";
-	for ( auto& row : v) {
-		for ( auto& elem : row) {
-			std::cout << elem << " ,";
-		}
-
-	}
-	std::cout <<"]\n" ;
+void printVec(VEC<T> &v) {
+    std::cout << "[ ";
+    for (size_t i = 0; i < v.size(); ++i) {
+        for (size_t j = 0; j < v[i].size(); ++j) {
+            std::cout << v[i][j] << ", ";
+        }
+    }
+    std::cout << "]\n";
 }
 
 //generate
@@ -59,7 +58,7 @@ VEC<T> generate(int N, action_t<T>f) {
 }
 //zip
 template <class T>
-VEC<T> zip(const VEC<T>& v, const VEC<T>& w) {
+VEC<T> zip(VEC<T>&v,VEC<T>& w) {
 	VEC<T> result;
 
 	for (int i = 0; i < v.size(); ++i) {
@@ -67,8 +66,10 @@ VEC<T> zip(const VEC<T>& v, const VEC<T>& w) {
 		for (int j = 0; j < v[i].size(); ++j) {
 			elem.push_back(v[i][j]);
 			elem.push_back(w[i][j]);
+			
 		}
 		result.push_back(elem);
+		
 	}
 
 	return result;
