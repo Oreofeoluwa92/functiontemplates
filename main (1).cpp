@@ -20,7 +20,6 @@ using map_t = T (*)(T, T);
 //printElem
 template <class T>
 void printElem(const ELEM<T> &v) {
-	//std::cout << "[ ";
 	for ( auto &elem : v) {
 		std::cout << elem << " ";
 	}
@@ -39,11 +38,16 @@ void printVec(VEC<T> &v) {
     std::cout << "[ ";
     for (size_t i = 0; i < v.size(); ++i) {
         for (size_t j = 0; j < v[i].size(); ++j) {
-            std::cout << v[i][j] << ", ";
+            std::cout << v[i][j];
+            if (j != v[i].size() - 1) {
+                std::cout << " , ";
+            }
         }
+       
     }
-    std::cout << "]\n";
+    std::cout << " ]\n";
 }
+
 
 //generate
 template <class T>
@@ -63,7 +67,7 @@ VEC<T> zip(VEC<T>&v,VEC<T>& w) {
 
 	for (int i = 0; i < v.size(); ++i) {
 		ELEM<T>elem;
-		for (int j = 0; j < v[i].size(); ++j) {
+		for (int j = 0; j < w[i].size(); ++j) {
 			elem.push_back(v[i][j]);
 			elem.push_back(w[i][j]);
 			
